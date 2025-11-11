@@ -1,4 +1,4 @@
-export const config = { runtime: 'edge' };
+export const runtime = 'edge';
 
 export default async function handler(req: Request): Promise<Response> {
   // 后端 API 根地址（应包含 /api 前缀），例如：https://your-backend.example.com/api
