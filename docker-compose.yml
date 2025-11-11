@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      # 允许所有来源跨域（生产建议收敛到前端域名）
+      - CORS_ALLOW_ORIGINS=*
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/openapi.json"]
+      interval: 10s
+      timeout: 3s
+      retries: 5

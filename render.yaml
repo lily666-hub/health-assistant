@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: health-assistant-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port 8000"
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: CORS_ALLOW_ORIGINS
+        value: "*"
+    healthCheckPath: "/openapi.json"
+    routes:
+      - type: rewrite
+        source: "/api/(.*)"
+        destination: "/$1"
