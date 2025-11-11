@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/**": {
+      "runtime": "edge"
+    }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
